@@ -11,7 +11,7 @@ A 5:3 compressor reduces five input bits and an input carry into three outputs (
 Key properties:
 - Inputs: A, B, C, D, E (and optional carry-in)
 - Outputs: S (sum), C0 (carry0), C1 (carry1) — position-weighted outputs
-<img width="426" height="665" alt="image" src="https://github.com/user-attachments/assets/d2dfa485-5da6-43cf-8b22-10576368e162" />
+<img width="825" height="172" alt="image" src="https://github.com/user-attachments/assets/fa45a99e-accd-4eef-90ef-e4ad4dcb024f" />
 
 
 ### 2.2 8-bit Structural Modelling
@@ -21,30 +21,33 @@ Top-level approach:
 3. **Reduction tree** built from 5:3 compressors (and final fast adder) to compress partial products to two rows.
 4. **Final adder** (e.g., ripple-carry / CLA) to produce the final signed product.
 
-<img width="473" height="729" alt="image" src="https://github.com/user-attachments/assets/c2014c2e-45a7-4fb7-bce0-2943a508a795" />
+<img width="895" height="441" alt="image" src="https://github.com/user-attachments/assets/341b430e-10a1-44f0-89dc-03a967c2be47" />
 
 
 ## 3. HDL Implementation Code
-- `src/compressor_5to3.v` — 5:3 compressor module
-- `src/booth_encoder.v` — Radix-8 encoder
-- `src/partial_product_gen.v` — partial product generation (sign/negation/shift)
-- `src/radix8_booth_multiplier_8bit.v` — structural top (instantiates compressors & final adder)
-
-> Paste your full Verilog for the Radix-8 Booth encoded multiplier in `src/radix8_booth_multiplier_8bit.v`.
-
-### 3.1 Radix-8 Booth encoded multiplier design
-(Place your Verilog file here; an example structural wrapper is included in `/src`.)
-
-### 3.2 Testbench implementation
-Test vectors and self-checking testbench provided in `tb/tb_radix8_booth_multiplier.v`. It tests a variety of signed operand combinations, edge-cases, and random vectors.
+- All **Verilog RTL/source files** are located in the `src/` directory.
+- All **testbench files** used for functional verification are located in the `tb_radix8_booth_multiplier.v` directory.
 
 ## 4. Simulation and Results
 ### 4.1 RTL Schematic
-Use RTL Analysis (run linter) flow to generate the RTL schematic. Place figures in `docs/rtl_schematic.png`.
+Use RTL Analysis (run linter) flow to generate the RTL schematic View of 5:3 Compressor Module
+<img width="1196" height="481" alt="image" src="https://github.com/user-attachments/assets/86b90132-90ae-4444-b6ed-ad83ff38ba8d" />
+
+RTL Schematic View of Radix-8 Booth Multiplier
+<img width="1394" height="732" alt="image" src="https://github.com/user-attachments/assets/9e03bd95-87b9-4699-9734-203b38d4fbac" />
 
 ### 4.2 Functional verification
-- Run the supplied testbench using Verilog or Gtkwave.
+- Run the supplied testbench using Verilog and Gtkwave.
 - Verify correctness against the structural model (e.g., reference behavioral multiplication).
+
+Simulation results
+<img width="1327" height="190" alt="image" src="https://github.com/user-attachments/assets/87593bbd-dfdb-4a57-8067-498c19396477" />
+
+Bit-wise Simulation result (GTK Wave)
+<img width="1386" height="853" alt="image" src="https://github.com/user-attachments/assets/26854c1d-d4db-426e-ae0a-1f19589f33be" />
+
+Test vectors passed
+<img width="1286" height="756" alt="image" src="https://github.com/user-attachments/assets/aa19456e-340f-4244-b4e5-0d96d6f1d61f" />
 
 ## 5. Conclusion
 The final implementation achieved significantly improves speed performance compared to conventional multipliers, with a slight trade-off in area.
@@ -52,6 +55,7 @@ Overall, the design demonstrates an efficient and high-performance multiplier ar
 other high-speed computing applications.
 
 ## 6. References
+IEEE research paper-
 [1] B. S., P. M., and V. M. B., “Design and Implementation of Signed Radix-8 Booth Encoded Multiplier Using 5:3 Compressor,” in Proceedings of the 2024 5th IEEE Global Conference for Advancement in Technology (GCAT), Karnataka, India, Oct. 4–6, 2024.
 
 
