@@ -1,3 +1,4 @@
+//intial_testbench
 module tb_radix8_booth_multiplier;
     reg  signed [7:0] A;
     reg  signed [7:0] B;
